@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="mmoda" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/mmoda" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../src" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/mmoda" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="../src" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="`wx-config --cflags`" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config --libs`" />
+		</Linker>
+		<Unit filename="mmAbout.cpp" />
+		<Unit filename="mmAbout.h" />
+		<Unit filename="mmBuilder.cpp" />
+		<Unit filename="mmBuilder.h" />
+		<Unit filename="mmEvents.cpp" />
+		<Unit filename="mmFileXml.cpp" />
+		<Unit filename="mmFrame2.cpp" />
+		<Unit filename="mmFrame2.h" />
+		<Unit filename="mmodaApp.cpp" />
+		<Unit filename="mmodaApp.h" />
+		<Unit filename="mmodaMain.cpp" />
+		<Unit filename="mmodaMain.h" />
+		<Unit filename="modbus.h" />
+		<Unit filename="version.h" />
+		<Unit filename="wxsmith/mmAbout.wxs" />
+		<Unit filename="wxsmith/mmFrame2.wxs" />
+		<Unit filename="wxsmith/mmodadialog.wxs" />
+		<Extensions>
+			<AutoVersioning>
+				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
+				<Settings autoincrement="0" date_declarations="1" use_define="0" update_manifest="0" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
+				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
+				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
+			</AutoVersioning>
+			<lib_finder disable_auto="1" />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="mmodaApp.cpp" main="mmodaDialog" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxDialog wxs="wxsmith/mmodadialog.wxs" src="mmodaMain.cpp" hdr="mmodaMain.h" fwddecl="0" i18n="1" name="mmodaDialog" language="CPP" />
+					<wxDialog wxs="wxsmith/mmFrame2.wxs" src="mmFrame2.cpp" hdr="mmFrame2.h" fwddecl="0" i18n="1" name="mmFrame2" language="CPP" />
+					<wxDialog wxs="wxsmith/mmAbout.wxs" src="mmAbout.cpp" hdr="mmAbout.h" fwddecl="0" i18n="1" name="mmAbout" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
