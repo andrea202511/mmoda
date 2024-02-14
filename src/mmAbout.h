@@ -3,7 +3,6 @@
 
 #include "version.h"
 
-
 #include <wx/button.h>
 #include <wx/dialog.h>
 #include <wx/sizer.h>

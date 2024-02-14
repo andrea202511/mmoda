@@ -20,6 +20,8 @@
 
 #include "mmBuilder.h"
 #include "mmAbout.h"
+#include "mmSetting.h"
+#include "mmDriver.h"
 
 class mmodaDialog: public wxDialog
 {
@@ -38,15 +40,19 @@ class mmodaDialog: public wxDialog
 
         mmBuilder* Builder;
         mmAbout* AboutDialog;
+        mmSetting* Setting;
+        mmDriver* Driver;
 
 
         //(*Handlers(mmodaDialog)
         void OnQuit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
         void SelectXmlFile(wxCommandEvent& event);
+        void OnButton4Click(wxCommandEvent& event);
         //*)
 
         //(*Identifiers(mmodaDialog)
+        static const long ID_BUTTON4;
         static const long ID_BUTTON3;
         static const long ID_BUTTON1;
         static const long ID_BUTTON2;
@@ -59,6 +65,7 @@ class mmodaDialog: public wxDialog
         wxButton* Button1;
         wxButton* Button2;
         wxButton* Button3;
+        wxButton* Button4;
         wxFileDialog* FileDialogXml;
         wxTextCtrl* TextCtrl1;
         //*)

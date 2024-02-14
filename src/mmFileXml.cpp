@@ -115,7 +115,15 @@ void mmodaDialog::LoadFileXml(void)
                         {
                             Builder->SetText1(str2);
                         }
-                        child_liv3=child_liv3->GetNext();
+                        if (str1=="Mode")
+                        {
+                            Builder->SetFunc(i_tmp);
+                        }
+                        if (str1=="Coil")
+                        {
+                            Builder->SetRegc(i_tmp);
+                        }
+                       child_liv3=child_liv3->GetNext();
                     }
                     Builder->SetButton();
                 }

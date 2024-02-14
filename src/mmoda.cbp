@@ -15,6 +15,7 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="../src" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -26,6 +27,7 @@
 				<Compiler>
 					<Add option="-O2" />
 					<Add directory="../src" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -43,10 +45,14 @@
 		<Unit filename="mmAbout.h" />
 		<Unit filename="mmBuilder.cpp" />
 		<Unit filename="mmBuilder.h" />
+		<Unit filename="mmDriver.cpp" />
+		<Unit filename="mmDriver.h" />
 		<Unit filename="mmEvents.cpp" />
 		<Unit filename="mmFileXml.cpp" />
 		<Unit filename="mmFrame2.cpp" />
 		<Unit filename="mmFrame2.h" />
+		<Unit filename="mmSetting.cpp" />
+		<Unit filename="mmSetting.h" />
 		<Unit filename="mmodaApp.cpp" />
 		<Unit filename="mmodaApp.h" />
 		<Unit filename="mmodaMain.cpp" />
@@ -55,10 +61,11 @@
 		<Unit filename="version.h" />
 		<Unit filename="wxsmith/mmAbout.wxs" />
 		<Unit filename="wxsmith/mmFrame2.wxs" />
+		<Unit filename="wxsmith/mmSetting.wxs" />
 		<Unit filename="wxsmith/mmodadialog.wxs" />
 		<Extensions>
 			<AutoVersioning>
-				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
+				<Scheme minor_max="10" build_max="999" rev_max="0" rev_rand_max="1" build_times_to_increment_minor="100" />
 				<Settings autoincrement="0" date_declarations="1" use_define="0" update_manifest="0" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
 				<Changes_Log show_changes_editor="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
 				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
@@ -70,6 +77,7 @@
 					<wxDialog wxs="wxsmith/mmodadialog.wxs" src="mmodaMain.cpp" hdr="mmodaMain.h" fwddecl="0" i18n="1" name="mmodaDialog" language="CPP" />
 					<wxDialog wxs="wxsmith/mmFrame2.wxs" src="mmFrame2.cpp" hdr="mmFrame2.h" fwddecl="0" i18n="1" name="mmFrame2" language="CPP" />
 					<wxDialog wxs="wxsmith/mmAbout.wxs" src="mmAbout.cpp" hdr="mmAbout.h" fwddecl="0" i18n="1" name="mmAbout" language="CPP" />
+					<wxDialog wxs="wxsmith/mmSetting.wxs" src="mmSetting.cpp" hdr="mmSetting.h" fwddecl="0" i18n="1" name="mmSetting" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

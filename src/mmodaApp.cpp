@@ -16,6 +16,7 @@
 
 extern mmodaDialog* mainDlg;
 
+
 IMPLEMENT_APP(mmodaApp);
 
 bool mmodaApp::OnInit()
