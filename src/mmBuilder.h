@@ -2,7 +2,9 @@
 #define MMBUILDER_H
 
 #include <wx/string.h>
+#include <wx/stattext.h>
 #include <wx/textctrl.h>
+#include <wx/statbmp.h>
 
 #include "mmFrame2.h"
 
@@ -13,11 +15,17 @@ class mmBuilder
         mmBuilder(wxDialog* parent);
         virtual ~mmBuilder();
 
-        void InitButton(void);
         void InitFrame(void);
-        void SetButton(void);
         void SetFrame(void);
         void ShowFrame(void);
+        void InitButton(void);
+        void SetButton(void);
+        void InitTextCtrl(void);
+        void SetTextCtrl(void);
+        void InitStaticText(void);
+        void SetStaticText(void);
+        void InitStaticBitmap(void);
+        void SetStaticBitmap(void);
 
         void SetDimHor(int val) { DimHor = val; }
         void SetDimVer(int val) { DimVer = val; }
@@ -36,19 +44,27 @@ class mmBuilder
         void OnEnterTxt(int id);
 
     protected:
-
-        int func[200];
-        int regc[200];
-        int par1[200];
-        int par2[200];
-        int par3[200];
+        //ID 1-99 Button
+        //ID 101-199 TextCtrl
+        //ID 201-299 DinamicText
+        //ID 301-399 DinamicIcon
+        int func[400];
+        int regc[400];
+        int par1[400];
+        int par2[400];
+        int par3[400];
 
     private:
-        wxButton* mmButton[200];
-        wxTextCtrl* TextCtrl1[200];
+        wxButton* mmButton[100];
+        wxTextCtrl* mmTextCtrl[100];
+//        wxDinamicText* mmDinamicText[100];
+//        wxDinamicIcon* mmDinamicIcon[100];
+        wxStaticText* mmStaticText[100];
+        wxStaticBitmap* mmStaticBitmap[100];
         int nbu;
-        int nte;
-        int nla;
+        int ntc;
+        int nst;
+        int nsb;
 
 
 

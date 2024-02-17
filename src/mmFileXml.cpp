@@ -127,8 +127,95 @@ void mmodaDialog::LoadFileXml(void)
                     }
                     Builder->SetButton();
                 }
-                if (str1=="Textbox")
+                if (str1=="Statictext")
                 {
+                    Builder->InitStaticText();
+                    child_liv3=child_liv2->GetChildren();
+                    while (child_liv3)
+                    {
+                        str1=child_liv3->GetName();
+                        str2=child_liv3->GetNodeContent();
+                        str2.ToInt(&i_tmp);
+
+                        if (str1=="PosHor")
+                        {
+                            Builder->SetPosHor(i_tmp);
+                        }
+                        if (str1=="PosVer")
+                        {
+                             Builder->SetPosVer(i_tmp);
+                        }
+                        if (str1=="Text")
+                        {
+                            Builder->SetText1(str2);
+                        }
+                        child_liv3=child_liv3->GetNext();
+                    }
+                    Builder->SetStaticText();
+                }
+                if (str1=="Staticbitmap")
+                {
+                    Builder->InitStaticBitmap();
+                    child_liv3=child_liv2->GetChildren();
+                    while (child_liv3)
+                    {
+                        str1=child_liv3->GetName();
+                        str2=child_liv3->GetNodeContent();
+                        str2.ToInt(&i_tmp);
+
+                        if (str1=="PosHor")
+                        {
+                            Builder->SetPosHor(i_tmp);
+                        }
+                        if (str1=="PosVer")
+                        {
+                             Builder->SetPosVer(i_tmp);
+                        }
+                        if (str1=="Text")
+                        {
+                            Builder->SetText1(str2);
+                        }
+                        child_liv3=child_liv3->GetNext();
+                    }
+                    Builder->SetStaticBitmap();
+                }
+                if (str1=="Numericfield")
+                {
+                   Builder->InitTextCtrl();
+                    child_liv3=child_liv2->GetChildren();
+                    while (child_liv3)
+                    {
+                        str1=child_liv3->GetName();
+                        str2=child_liv3->GetNodeContent();
+                        str2.ToInt(&i_tmp);
+
+                        if (str1=="PosHor")
+                        {
+                            Builder->SetPosHor(i_tmp);
+                        }
+                        if (str1=="PosVer")
+                        {
+                             Builder->SetPosVer(i_tmp);
+                        }
+                        if (str1=="Lenght")
+                        {
+                            Builder->SetPar1(i_tmp);
+                        }
+                        if (str1=="Readonly")
+                        {
+                            Builder->SetPar2(i_tmp);
+                        }
+                        if (str1=="Decimal")
+                        {
+                            Builder->SetPar3(i_tmp);
+                        }
+                        if (str1=="Register")
+                        {
+                            Builder->SetRegc(i_tmp);
+                        }
+                        child_liv3=child_liv3->GetNext();
+                    }
+                    Builder->SetTextCtrl();
                 }
                 child_liv2=child_liv2->GetNext();
             }

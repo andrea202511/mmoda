@@ -13,8 +13,9 @@ mmBuilder::mmBuilder(wxDialog* parent)
     //ctor
     main=parent;
     nbu=0;
-    nte=0;
-    nla=0;
+    ntc=0;
+    nst=0;
+    nsb=0;
 
     for(int i=0;i<200;i++)
     {
@@ -32,7 +33,9 @@ mmBuilder::~mmBuilder()
     //dtor
 }
 
-
+/*=========================
+  BUTTON
+==========================*/
 void mmBuilder::InitButton(void)
 {
     DimHor=60;
@@ -56,6 +59,62 @@ void mmBuilder::SetButton(void)
     nbu++;
 }
 
+
+/*=========================
+  TEXTCTRL
+==========================*/
+void mmBuilder::InitTextCtrl(void)
+{
+
+}
+
+void mmBuilder::SetTextCtrl(void)
+{
+    int aa=ntc+1;
+    mmTextCtrl[ntc] = new wxTextCtrl(Panel1, aa, _(""), wxPoint(PosHor,PosVer), wxDefaultSize, wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    mmTextCtrl[ntc]->Bind(wxEVT_TEXT_ENTER, &OnTextEnter);
+    ntc++;
+}
+
+/*=========================
+  STATIC TEXT
+==========================*/
+void mmBuilder::InitStaticText(void)
+{
+    PosHor=1;
+    PosVer=1;
+    Text1="Label";
+}
+
+
+void mmBuilder::SetStaticText(void)
+{
+    int aa=nst+1;
+    mmStaticText[nst] = new wxStaticText(Panel1, aa, Text1, wxPoint(PosHor,PosVer), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+    nst++;
+}
+
+/*=========================
+  STATIC BITMAP
+==========================*/
+void mmBuilder::InitStaticBitmap(void)
+{
+    PosHor=1;
+    PosVer=1;
+    Text1="null";
+}
+
+
+void mmBuilder::SetStaticBitmap(void)
+{
+    int aa=nsb+1;
+     mmStaticBitmap[nsb] = new wxStaticBitmap(Panel1, aa, wxBitmap(wxImage(Text1)), wxPoint(PosHor,PosVer), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+   nsb++;
+}
+
+/*=========================
+  FRAME
+==========================*/
 
 void mmBuilder::InitFrame(void)
 {
