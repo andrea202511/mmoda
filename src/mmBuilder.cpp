@@ -1,6 +1,7 @@
 #include "mmBuilder.h"
 #include "mmDriver.h"
 
+
 extern void OnPressButton(wxMouseEvent& event);
 extern void OnReleaseButton(wxMouseEvent& event);
 extern void OnTextEnter(wxCommandEvent& event);
@@ -17,6 +18,8 @@ mmBuilder::mmBuilder(wxDialog* parent)
     nst=0;
     nsb=0;
 
+    fluu=98;
+
     for(int i=0;i<200;i++)
     {
         func[i]=0;
@@ -25,6 +28,8 @@ mmBuilder::mmBuilder(wxDialog* parent)
         par2[i]=0;
         par3[i]=0;
     }
+
+
 
 }
 
@@ -41,7 +46,9 @@ void mmBuilder::InitButton(void)
     DimHor=60;
     DimVer=80;
     PosHor=1;
-    PosVer=1;
+    PosVer=1;      wxValidator* val;
+     wxValidator* valf;
+
     Text1="Label";
     func[nbu]=0;
     regc[nbu]=0;
@@ -62,7 +69,22 @@ void mmBuilder::SetButton(void)
 
 /*=========================
   TEXTCTRL
+;Numericfield Mode
+;1 signed integer 16 bit    //ordine byte da setting
+;2 signed integer 32 bit
+;3 unsigned integer 16 bit
+;4 unsigned integer 32 bit
+;5 fixed point 16 bit //decimali su par1
+;6 fixed point 32 bit
+;7 floting point 32 bit
+;8 floating poit 64 bits
+
+;Numericfield ReadOnly
+; 0 writable
+; 1 read only update only at startup
+; 2 read only update continue
 ==========================*/
+
 void mmBuilder::InitTextCtrl(void)
 {
 
@@ -70,9 +92,57 @@ void mmBuilder::InitTextCtrl(void)
 
 void mmBuilder::SetTextCtrl(void)
 {
-    int aa=ntc+1;
-    mmTextCtrl[ntc] = new wxTextCtrl(Panel1, aa, _(""), wxPoint(PosHor,PosVer), wxDefaultSize, wxTE_PROCESS_ENTER, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    mmTextCtrl[ntc]->Bind(wxEVT_TEXT_ENTER, &OnTextEnter);
+//wxFloatingPointValidator<double> _val(2,&_myValue,wxNUM_VAL_ZERO_AS_BLANK);
+//    _val.SetRange(0.,1000.);     // set allowable range
+
+//if (Func==1)
+  //  wxIntegerValidator<signed short> val(&ssuu, wxNUM_VAL_THOUSANDS_SEPARATOR);
+//if (Func==7)
+    wxFloatingPointValidator<float> val(2,&fluu, wxNUM_VAL_THOUSANDS_SEPARATOR);
+
+    if (Func==1)
+    {
+       val.SetMin(-32767);
+       val.SetMax(32767);
+        val.SetPrecision(0);
+    }
+    else if (Func==2)
+    {
+       val.SetMin(-2147483648);
+       val.SetMax(2147483648);
+       val.SetPrecision(0);
+    }
+    else if (Func==3)
+    {
+       val.SetMin(-2147483648);
+       val.SetMax(2147483648);
+       val.SetPrecision(0);
+    }
+    else if (Func==4)
+    {
+       val.SetMin(-2147483648);
+       val.SetMax(2147483648);
+       val.SetPrecision(0);
+    }
+    else if (Func==5)
+    {
+       val.SetMin(-2147483648);
+       val.SetMax(2147483648);
+       val.SetPrecision(3);
+    }
+    else if (Func==6)
+    {
+       val.SetMin(-2147483648);
+       val.SetMax(2147483648);
+      // unsigned int ui= par1;
+       val.SetPrecision(2);
+    }
+
+    int aa=ntc+1+100;
+        mmTextCtrl[ntc] = new wxTextCtrl(Panel1, aa, _(""), wxPoint(PosHor,PosVer), wxDefaultSize, wxTE_PROCESS_ENTER, val, _T("ID_TEXTCTRL1"));
+     mmTextCtrl[ntc]->Bind(wxEVT_TEXT_ENTER, &OnTextEnter);
+    func[ntc+100]=Func;
+    regc[ntc+100]=Regc;
     ntc++;
 }
 
@@ -162,7 +232,69 @@ void mmBuilder::OnReleaseBtn(int id)
         driver->WriteCoilImm(co,false);
 }
 
+/*=========================
+  TEXTCTRL
+;Numericfield Mode
+;1 signed integer 16 bit    //ordine byte da setting
+;2 signed integer 32 bit
+;3 unsigned integer 16 bit
+;4 unsigned integer 32 bit
+;5 fixed point 16 bit //decimali su par1
+;6 fixed point 32 bit
+;7 floting point 32 bit
+;8 floating poit 64 bits
+
+;Numericfield ReadOnly
+; 0 writable
+; 1 read only update only at startup
+; 2 read only update continue
+==========================*/
+
+TODO riallineare indici e ID
+
 void mmBuilder::OnEnterTxt(int id)
 {
+    uint16_t co,ui16;
+    uint32_t ui32;
+    int16_t i16;
+    int32_t i32;
+
+    int u=id-1-100;
+    if (u<0||u>99)
+        return;
+   // mmTextCtrl->GetValidator();
+   mmTextCtrl[u]->GetValidator()->TransferFromWindow();
+
+    co=(uint16_t) regc[u];
+    if (func[u+100]==1)
+    {
+        i16=(int16_t)fluu;
+        driver->WriteRegisterImm(co,i16);
+    }
+    else if (func[u+100]==2)
+    {
+        i32=(int32_t)fluu;
+        ui16=(uint16_t)i32;
+        driver->WriteRegisterImm(co,ui16);
+        ui16=(uint16_t)(i32/65536);
+        co++;
+        driver->WriteRegisterImm(co,ui16);
+
+    }
+    else if (func[u+100]==3)
+    {
+        ui16=(uint16_t)fluu;
+        driver->WriteRegisterImm(co,ui16);
+    }
+    else if (func[u+100]==4)
+    {
+        ui32=(int32_t)fluu;
+        ui16=(uint16_t)ui32;
+        driver->WriteRegisterImm(co,ui16);
+        ui16=(uint16_t)(ui32/65536);
+        co++;
+        driver->WriteRegisterImm(co,ui16);
+
+    }
 
 }

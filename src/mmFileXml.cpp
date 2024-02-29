@@ -197,6 +197,10 @@ void mmodaDialog::LoadFileXml(void)
                         {
                              Builder->SetPosVer(i_tmp);
                         }
+                        if (str1=="Mode")
+                        {
+                            Builder->SetFunc(i_tmp);
+                        }
                         if (str1=="Lenght")
                         {
                             Builder->SetPar1(i_tmp);

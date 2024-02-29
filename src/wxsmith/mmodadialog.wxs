@@ -15,6 +15,7 @@
 						</object>
 						<flag>wxALL|wxEXPAND</flag>
 						<border>4</border>
+						<option>1</option>
 					</object>
 					<object class="sizeritem">
 						<object class="wxButton" name="ID_BUTTON3" variable="Button3" member="yes">
@@ -23,6 +24,7 @@
 						</object>
 						<flag>wxALL|wxEXPAND</flag>
 						<border>4</border>
+						<option>1</option>
 					</object>
 				</object>
 				<flag>wxEXPAND</flag>
@@ -36,6 +38,7 @@
 						</object>
 						<flag>wxALL|wxEXPAND</flag>
 						<border>4</border>
+						<option>1</option>
 					</object>
 					<object class="sizeritem">
 						<object class="wxButton" name="ID_BUTTON2" variable="Button2" member="yes">
@@ -44,6 +47,7 @@
 						</object>
 						<flag>wxALL|wxEXPAND</flag>
 						<border>4</border>
+						<option>1</option>
 					</object>
 				</object>
 				<flag>wxEXPAND</flag>

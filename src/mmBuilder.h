@@ -5,6 +5,8 @@
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
 #include <wx/statbmp.h>
+#include <wx/valnum.h>
+
 
 #include "mmFrame2.h"
 
@@ -83,6 +85,14 @@ class mmBuilder
         wxPanel* Panel1;
         mmFrame2* Frame1;
         wxDialog* main;
+    unsigned short usuu;
+    unsigned long uluu;
+    signed short ssuu;
+    signed long lluu;
+    float fluu;
+
+
+
 };
 
 #endif // MMBUILDER_H

@@ -18,6 +18,7 @@
 mmodaDialog* mainDlg;
 mmBuilder* build;
 mmDriver* driver;
+mmSetting* setting;
 
 
 //helper functions
@@ -69,15 +70,15 @@ mmodaDialog::mmodaDialog(wxWindow* parent,wxWindowID id)
     BoxSizer1 = new wxBoxSizer(wxVERTICAL);
     BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     Button4 = new wxButton(this, ID_BUTTON4, _("Setup"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
-    BoxSizer3->Add(Button4, 0, wxALL|wxEXPAND, 4);
+    BoxSizer3->Add(Button4, 1, wxALL|wxEXPAND, 4);
     Button3 = new wxButton(this, ID_BUTTON3, _("Load"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
-    BoxSizer3->Add(Button3, 0, wxALL|wxEXPAND, 4);
+    BoxSizer3->Add(Button3, 1, wxALL|wxEXPAND, 4);
     BoxSizer1->Add(BoxSizer3, 0, wxEXPAND, 0);
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Button1 = new wxButton(this, ID_BUTTON1, _("About"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    BoxSizer2->Add(Button1, 0, wxALL|wxEXPAND, 4);
+    BoxSizer2->Add(Button1, 1, wxALL|wxEXPAND, 4);
     Button2 = new wxButton(this, ID_BUTTON2, _("Quit"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
-    BoxSizer2->Add(Button2, 0, wxALL|wxEXPAND, 4);
+    BoxSizer2->Add(Button2, 1, wxALL|wxEXPAND, 4);
     BoxSizer1->Add(BoxSizer2, 0, wxEXPAND, 4);
     TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(0,200), wxTE_MULTILINE|wxVSCROLL|wxHSCROLL|wxALWAYS_SHOW_SB, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     BoxSizer1->Add(TextCtrl1, 1, wxALL|wxEXPAND, 4);
@@ -95,6 +96,7 @@ mmodaDialog::mmodaDialog(wxWindow* parent,wxWindowID id)
     build=Builder;
     AboutDialog = new mmAbout(this);
     Setting = new mmSetting(this);
+    setting=Setting;
     Driver = new mmDriver();
     driver=Driver;
 
@@ -122,7 +124,7 @@ void mmodaDialog::SelectXmlFile(wxCommandEvent& event)
     if (FileDialogXml->ShowModal() == wxID_OK)
     {
 		Driver->Connect();
-        XmlFileName =FileDialogXml->GetPath();
+        XmlFileName=FileDialogXml->GetPath();
 		LoadFileXml();
     }
 

@@ -47,7 +47,6 @@ mmAbout::mmAbout(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize&
 	wxFont TextCtrl2Font(10,wxFONTFAMILY_SWISS,wxFONTSTYLE_ITALIC,wxFONTWEIGHT_BOLD,false,_T("Sans"),wxFONTENCODING_DEFAULT);
 	TextCtrl2->SetFont(TextCtrl2Font);
 	BoxSizer1->Add(TextCtrl2, 1, wxALIGN_CENTER_HORIZONTAL, 5);
-	BoxSizer1->Add(400,0,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	TextCtrl3 = new wxTextCtrl(this, ID_TEXTCTRL3, _("0"), wxDefaultPosition, wxDefaultSize, wxTE_READONLY|wxTE_RIGHT|wxBORDER_NONE|wxTRANSPARENT_WINDOW, wxDefaultValidator, _T("ID_TEXTCTRL3"));
 	BoxSizer1->Add(TextCtrl3, 1, wxALL|wxEXPAND, 5);
 	TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL1, _("Autor: andrea202511 (Andrea Fabbri)\n\nThis program is licensed under the terms\nof the GNU General Public License version 3\nhttp://www.gnu.org/licenses/gpl-3.0.html"), wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxVSCROLL|wxALWAYS_SHOW_SB, wxDefaultValidator, _T("ID_TEXTCTRL1"));

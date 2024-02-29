@@ -12,6 +12,13 @@ class mmDriver
 
         void Connect(void);
         void WriteCoilImm(uint16_t co,bool val);
+        void WriteRegisterImm(uint16_t reg,uint16_t val);
+        void WriteRegistersImm(uint16_t reg,uint16_t num, uint16_t* val);
+
+        void ReadCoilImm(uint16_t co,bool* val);
+        void ReadRegisterImm(uint16_t reg, uint16_t* val);
+        void ReadRegistersImm(uint16_t reg, uint16_t num, uint16_t* val);
+
 
     protected:
 
