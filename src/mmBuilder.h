@@ -24,6 +24,7 @@ class mmBuilder
         void SetButton(void);
         void InitTextCtrl(void);
         void SetTextCtrl(void);
+        void UpdTextCtrl(int id);
         void InitStaticText(void);
         void SetStaticText(void);
         void InitStaticBitmap(void);
@@ -89,7 +90,7 @@ class mmBuilder
     unsigned long uluu;
     signed short ssuu;
     signed long lluu;
-    float fluu;
+    float fluu[100];
 
 
 

@@ -18,7 +18,6 @@ mmBuilder::mmBuilder(wxDialog* parent)
     nst=0;
     nsb=0;
 
-    fluu=98;
 
     for(int i=0;i<200;i++)
     {
@@ -98,7 +97,7 @@ void mmBuilder::SetTextCtrl(void)
 //if (Func==1)
   //  wxIntegerValidator<signed short> val(&ssuu, wxNUM_VAL_THOUSANDS_SEPARATOR);
 //if (Func==7)
-    wxFloatingPointValidator<float> val(2,&fluu, wxNUM_VAL_THOUSANDS_SEPARATOR);
+    wxFloatingPointValidator<float> val(2,&fluu[ntc], wxNUM_VAL_THOUSANDS_SEPARATOR);
 
     if (Func==1)
     {
@@ -144,6 +143,8 @@ void mmBuilder::SetTextCtrl(void)
     func[ntc+100]=Func;
     regc[ntc+100]=Regc;
     ntc++;
+
+    UpdTextCtrl(aa);
 }
 
 /*=========================
@@ -250,7 +251,6 @@ void mmBuilder::OnReleaseBtn(int id)
 ; 2 read only update continue
 ==========================*/
 
-TODO riallineare indici e ID
 
 void mmBuilder::OnEnterTxt(int id)
 {
@@ -264,16 +264,18 @@ void mmBuilder::OnEnterTxt(int id)
         return;
    // mmTextCtrl->GetValidator();
    mmTextCtrl[u]->GetValidator()->TransferFromWindow();
+   mmTextCtrl[u]->Enable(false);
+   mmTextCtrl[u]->Enable(true);
 
-    co=(uint16_t) regc[u];
+    co=(uint16_t) regc[u+100];
     if (func[u+100]==1)
     {
-        i16=(int16_t)fluu;
+        i16=(int16_t)fluu[u];
         driver->WriteRegisterImm(co,i16);
     }
     else if (func[u+100]==2)
     {
-        i32=(int32_t)fluu;
+        i32=(int32_t)fluu[u];
         ui16=(uint16_t)i32;
         driver->WriteRegisterImm(co,ui16);
         ui16=(uint16_t)(i32/65536);
@@ -283,12 +285,27 @@ void mmBuilder::OnEnterTxt(int id)
     }
     else if (func[u+100]==3)
     {
-        ui16=(uint16_t)fluu;
+        ui16=(uint16_t)fluu[u];
         driver->WriteRegisterImm(co,ui16);
     }
     else if (func[u+100]==4)
     {
-        ui32=(int32_t)fluu;
+        ui32=(int32_t)fluu[u];
+        ui16=(uint16_t)ui32;
+        driver->WriteRegisterImm(co,ui16);
+        ui16=(uint16_t)(ui32/65536);
+        co++;
+        driver->WriteRegisterImm(co,ui16);
+
+    }
+    else if (func[u+100]==5)
+    {
+        ui16=(uint16_t)(fluu[u]*1000);
+        driver->WriteRegisterImm(co,ui16);
+    }
+    else if (func[u+100]==6)
+    {
+        ui32=(int32_t)(fluu[u]*100);
         ui16=(uint16_t)ui32;
         driver->WriteRegisterImm(co,ui16);
         ui16=(uint16_t)(ui32/65536);
@@ -298,3 +315,68 @@ void mmBuilder::OnEnterTxt(int id)
     }
 
 }
+
+void mmBuilder::UpdTextCtrl(int id)
+{
+    uint16_t co,ui16;
+    uint32_t ui32;
+
+    int u=id-1-100;
+    if (u<0||u>99)
+        return;
+
+    co=(uint16_t) regc[u+100];
+
+    if ((func[u+100]==1)||(func[u+100]==3)||(func[u+100]==5))
+    {
+        //16 bits
+        driver->ReadRegisterImm(co,&ui16);
+    }
+    else if (func[id+100]==8)
+    {
+        //64 bits
+        //qui quattro
+    }
+    else
+    {
+        //32 bits
+        driver->ReadRegisterImm(co,&ui16);
+        ui32=((uint32_t) ui16)*65536;
+        co++;
+        driver->ReadRegisterImm(co,&ui16);
+        ui32=ui32+(uint32_t) ui16;
+    }
+
+    if (func[u+100]==1)
+    {
+        fluu[u]=(float)(int16_t)ui16;
+    }
+    else if (func[u+100]==2)
+    {
+        fluu[u]=(float)(int32_t)ui32;
+    }
+    else if (func[u+100]==3)
+    {
+        fluu[u]=(float)ui16;
+    }
+    else if (func[u+100]==4)
+    {
+        fluu[u]=(float)ui32;
+    }
+        else if (func[u+100]==5)
+    {
+        fluu[u]=((float)ui16)/100;
+    }
+    else if (func[u+100]==6)
+    {
+        fluu[u]=((float)ui32)/100;
+    }
+
+    mmTextCtrl[u]->GetValidator()->TransferToWindow();
+    mmTextCtrl[u]->SetFocus();
+
+
+}
+
+
+
