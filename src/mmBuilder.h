@@ -6,12 +6,22 @@
 #include <wx/textctrl.h>
 #include <wx/statbmp.h>
 #include <wx/valnum.h>
+#include <wx/timer.h>
 
 
 #include "mmFrame2.h"
 
+/*
+class myDinamicIcon
+{
+    void SetVal();
+    void Refresh();
+    int value;
+};
+*/
 
-class mmBuilder
+
+class mmBuilder : public wxTimer
 {
     public:
         mmBuilder(wxDialog* parent);
@@ -20,6 +30,7 @@ class mmBuilder
         void InitFrame(void);
         void SetFrame(void);
         void ShowFrame(void);
+        void CloseFrame(void);
         void InitButton(void);
         void SetButton(void);
         void InitTextCtrl(void);
@@ -27,8 +38,10 @@ class mmBuilder
         void UpdTextCtrl(int id);
         void InitStaticText(void);
         void SetStaticText(void);
-        void InitStaticBitmap(void);
-        void SetStaticBitmap(void);
+        void InitStaticIcon(void);
+        void SetStaticIcon(void);
+        void InitDinamicIcon(void);
+        void SetDinamicIcon(void);
 
         void SetDimHor(int val) { DimHor = val; }
         void SetDimVer(int val) { DimVer = val; }
@@ -42,20 +55,50 @@ class mmBuilder
         void SetPar2(int val) { Par2=val; }
         void SetPar3(int val) { Par3=val; }
 
+        void AddBitmap(wxString bmp);
+
         void OnPressBtn(int id);
         void OnReleaseBtn(int id);
         void OnEnterTxt(int id);
 
     protected:
-        //ID 1-99 Button
+        //ID 001-099 BuTton
         //ID 101-199 TextCtrl
         //ID 201-299 DinamicText
         //ID 301-399 DinamicIcon
-        int func[400];
-        int regc[400];
-        int par1[400];
-        int par2[400];
-        int par3[400];
+
+        int func_bt[100];
+        int func_tc[100];
+        int func_dt[100];
+        int func_di[100];
+        int posx_di[100];
+        int posy_di[100];
+
+        int regc_bt[100];
+        int regc_tc[100];
+        int regc_dt[100];
+        int regc_di[100];
+
+        int par1_bt[100];
+        int par1_tc[100];
+        int par1_dt[100];
+        int par1_di[100];
+
+        int par2_bt[100];
+        int par2_tc[100];
+        int par2_dt[100];
+        int par2_di[100];
+
+        int par3_bt[100];
+        int par3_tc[100];
+        int par3_dt[100];
+        int par3_di[100];
+
+        float flo_tc[100];
+        int val_di[100];
+
+        void Notify();
+
 
     private:
         wxButton* mmButton[100];
@@ -63,11 +106,22 @@ class mmBuilder
 //        wxDinamicText* mmDinamicText[100];
 //        wxDinamicIcon* mmDinamicIcon[100];
         wxStaticText* mmStaticText[100];
-        wxStaticBitmap* mmStaticBitmap[100];
+        wxStaticBitmap* mmStaticIcon[100];
+//        myDinamicIcon* mmDinamicIcon[100];
+
+        wxBitmap* Bmps[100];
+
+        wxBitmap btm1;
+        wxBitmap btm2;
+
         int nbu;
         int ntc;
+        int ndt;
+        int ndi;
         int nst;
-        int nsb;
+        int nsi;
+        int nbmp;
+        int ntxt;
 
 
 
@@ -90,10 +144,11 @@ class mmBuilder
     unsigned long uluu;
     signed short ssuu;
     signed long lluu;
-    float fluu[100];
 
 
 
 };
+
+
 
 #endif // MMBUILDER_H

@@ -43,6 +43,8 @@
 		</Linker>
 		<Unit filename="mmAbout.cpp" />
 		<Unit filename="mmAbout.h" />
+		<Unit filename="mmBmpData.cpp" />
+		<Unit filename="mmBmpData.h" />
 		<Unit filename="mmBuilder.cpp" />
 		<Unit filename="mmBuilder.h" />
 		<Unit filename="mmDriver.cpp" />

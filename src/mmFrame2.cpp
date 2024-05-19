@@ -1,5 +1,9 @@
 #include "mmFrame2.h"
 
+#include "mmodaMain.h"
+#include "mmBuilder.h"
+extern mmBuilder* build;
+
 //(*InternalHeaders(mmFrame2)
 #include <wx/intl.h>
 #include <wx/string.h>
@@ -36,6 +40,8 @@ mmFrame2::mmFrame2(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSiz
     BoxSizer1->Add(BoxSizer2, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     SetSizer(BoxSizer1);
     BoxSizer1->SetSizeHints(this);
+
+    Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&mmFrame2::OnClose);
     //*)
 }
 
@@ -45,3 +51,9 @@ mmFrame2::~mmFrame2()
     //*)
 }
 
+
+void mmFrame2::OnClose(wxCloseEvent& event)
+{
+    build->CloseFrame();
+    Destroy();
+}

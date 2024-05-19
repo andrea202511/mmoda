@@ -6,6 +6,7 @@
 #include <wx/choice.h>
 #include <wx/dialog.h>
 #include <wx/sizer.h>
+#include <wx/statbmp.h>
 #include <wx/statline.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
@@ -27,6 +28,7 @@ class mmSetting: public wxDialog
         wxChoice* Choice1;
         wxChoice* Choice2;
         wxChoice* Choice3;
+        wxStaticBitmap* StaticBitmap1;
         wxStaticLine* StaticLine1;
         wxStaticLine* StaticLine2;
         wxStaticText* StaticText1;
@@ -61,6 +63,7 @@ class mmSetting: public wxDialog
         static const long ID_CHOICE1;
         static const long ID_CHOICE2;
         static const long ID_CHOICE3;
+        static const long ID_STATICBITMAP1;
         static const long ID_BUTTON1;
         //*)
 

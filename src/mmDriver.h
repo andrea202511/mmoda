@@ -1,6 +1,8 @@
 #ifndef MMDRIVER_H
 #define MMDRIVER_H
 
+#include <wx/string.h>
+
 #include "modbus.h"
 
 
@@ -19,6 +21,7 @@ class mmDriver
         void ReadRegisterImm(uint16_t reg, uint16_t* val);
         void ReadRegistersImm(uint16_t reg, uint16_t num, uint16_t* val);
 
+        int err;
 
     protected:
 

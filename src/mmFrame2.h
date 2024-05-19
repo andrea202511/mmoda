@@ -8,6 +8,8 @@
 #include <wx/sizer.h>
 //*)
 
+
+
 class mmFrame2: public wxDialog
 {
     public:
@@ -32,6 +34,7 @@ class mmFrame2: public wxDialog
     private:
 
         //(*Handlers(mmFrame2)
+        void OnClose(wxCloseEvent& event);
         //*)
 
         DECLARE_EVENT_TABLE()

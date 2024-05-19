@@ -1,6 +1,9 @@
 #include "mmSetting.h"
 
 //(*InternalHeaders(mmSetting)
+#include <wx/artprov.h>
+#include <wx/bitmap.h>
+#include <wx/image.h>
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
@@ -20,6 +23,7 @@ const long mmSetting::ID_STATICLINE2 = wxNewId();
 const long mmSetting::ID_CHOICE1 = wxNewId();
 const long mmSetting::ID_CHOICE2 = wxNewId();
 const long mmSetting::ID_CHOICE3 = wxNewId();
+const long mmSetting::ID_STATICBITMAP1 = wxNewId();
 const long mmSetting::ID_BUTTON1 = wxNewId();
 //*)
 
@@ -95,6 +99,8 @@ mmSetting::mmSetting(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxS
     BoxSizer4->Add(Choice3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer1->Add(BoxSizer4, 1, wxALL|wxEXPAND, 5);
     BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
+    StaticBitmap1 = new wxStaticBitmap(this, ID_STATICBITMAP1, wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FULL_SCREEN")),wxART_OTHER), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+    BoxSizer5->Add(StaticBitmap1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer1->Add(BoxSizer5, 1, wxALL|wxEXPAND, 5);
     BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     BoxSizer1->Add(BoxSizer6, 1, wxALL|wxEXPAND, 5);

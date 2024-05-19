@@ -31,18 +31,18 @@ void mmodaDialog::LoadFileXml(void)
 
     int i_tmp;
 
-    log="Opening file: "+XmlFileName+":";
+    log="Opening file: "+XmlFileName+"\n";
 
     AddLog(log);
 
     if (!docxml.Load(XmlFileName))
     {
-        AddLog("Error\n");
+        AddLog("...Fail\n");
         return;
     }
     else
     {
-        AddLog("Done\n");
+        AddLog("...Done\n");
     }
 
     //Loop to find Frame/Items
@@ -155,7 +155,7 @@ void mmodaDialog::LoadFileXml(void)
                 }
                 if (str1=="Staticbitmap")
                 {
-                    Builder->InitStaticBitmap();
+                    Builder->InitStaticIcon();
                     child_liv3=child_liv2->GetChildren();
                     while (child_liv3)
                     {
@@ -177,11 +177,45 @@ void mmodaDialog::LoadFileXml(void)
                         }
                         child_liv3=child_liv3->GetNext();
                     }
-                    Builder->SetStaticBitmap();
+                    Builder->SetStaticIcon();
+                }
+                if (str1=="Dinamicicon")
+                {
+                    Builder->InitDinamicIcon();
+                    child_liv3=child_liv2->GetChildren();
+                    while (child_liv3)
+                    {
+                        str1=child_liv3->GetName();
+                        str2=child_liv3->GetNodeContent();
+                        str2.ToInt(&i_tmp);
+
+                        if (str1=="PosHor")
+                        {
+                            Builder->SetPosHor(i_tmp);
+                        }
+                        if (str1=="PosVer")
+                        {
+                             Builder->SetPosVer(i_tmp);
+                        }
+                        if (str1=="Icon0")
+                        {
+                            Builder->SetPar1(i_tmp);
+                        }
+                        if (str1=="Icon1")
+                        {
+                            Builder->SetPar2(i_tmp);
+                        }
+                        if (str1=="Coil")
+                        {
+                            Builder->SetRegc(i_tmp);
+                        }
+                        child_liv3=child_liv3->GetNext();
+                    }
+                    Builder->SetDinamicIcon();
                 }
                 if (str1=="Numericfield")
                 {
-                   Builder->InitTextCtrl();
+                    Builder->InitTextCtrl();
                     child_liv3=child_liv2->GetChildren();
                     while (child_liv3)
                     {
@@ -201,15 +235,15 @@ void mmodaDialog::LoadFileXml(void)
                         {
                             Builder->SetFunc(i_tmp);
                         }
-                        if (str1=="Lenght")
+                        if (str1=="Decimal")
                         {
                             Builder->SetPar1(i_tmp);
                         }
-                        if (str1=="Readonly")
+                        if (str1=="Lenght")
                         {
                             Builder->SetPar2(i_tmp);
                         }
-                        if (str1=="Decimal")
+                        if (str1=="ReadOnly")
                         {
                             Builder->SetPar3(i_tmp);
                         }
@@ -220,6 +254,20 @@ void mmodaDialog::LoadFileXml(void)
                         child_liv3=child_liv3->GetNext();
                     }
                     Builder->SetTextCtrl();
+                }
+                child_liv2=child_liv2->GetNext();
+            }
+        }
+        if (str1=="Resources")
+        {
+            child_liv2=child_liv1->GetChildren();
+            while (child_liv2)
+            {
+                str1=child_liv2->GetName();
+                str2=child_liv2->GetNodeContent();
+                if (str1=="Bitmap")
+                {
+                    Builder->AddBitmap(str2);
                 }
                 child_liv2=child_liv2->GetNext();
             }
